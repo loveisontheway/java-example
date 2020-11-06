@@ -6,7 +6,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 ## Table of Contents
 + [Environment](https://github.com/loveisontheway/java-example#Environment)
 + [Project](https://github.com/loveisontheway/java-example#Project)
-+ [SSL](https://github.com/loveisontheway/java-example#Generator)
++ [Generator](https://github.com/loveisontheway/java-example#Generator)
 
 ## Environment
 + `JDK:` 1.8+
