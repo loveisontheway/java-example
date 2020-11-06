@@ -13,6 +13,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 + `Tomcat:` 9.0.x
 + `Spring Boot:` 2.2.x
 + `Mybatis-Plus:` 3.3.2
++ `Thymeleaf:` 2.2.x
 + `lombok:` 1.18.x
 
 ## Project
@@ -25,6 +26,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.example.mapper | Mapper数据访问持久层 |
 | com.muxi.java.example.model | 实体类Bean |
 | com.muxi.java.example.netty | 网络编程 |
+| com.muxi.java.example.redis | 简单的Redis分布式锁，基于称杀系统库存数实现 |
 | com.muxi.java.example.service | Service接口 |
 | com.muxi.java.example.service.impl | 业务逻辑处理 |
 | com.muxi.java.example.task | 定时任务 |
