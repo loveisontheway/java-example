@@ -65,7 +65,7 @@ public class SuperGenerator {
      */
     protected PackageConfig getPackageConfig() {
         return new PackageConfig()
-                .setParent("com.muxi.tyb.example")
+                .setParent("com.muxi.java.example")
                 .setController("web")
                 .setEntity("model")
                 .setMapper("mapper")
