@@ -1,7 +1,7 @@
 package com.muxi.java.example;
 
 
-import com.muxi.java.example.utils.MultiThreadUtils;
+import com.muxi.java.example.utils.MultiThreadUtil;
 import com.muxi.java.example.model.User;
 import com.muxi.java.example.utils.ITask;
 import com.muxi.java.example.utils.ResultBean;
@@ -41,7 +41,7 @@ public class TestTask implements ITask<ResultBean<String>, User> {
         data.add(new User("小D","男",30));
 
         // 创建多线程处理任务
-        MultiThreadUtils<User> threadUtils = MultiThreadUtils.newInstance(3);
+        MultiThreadUtil<User> threadUtils = MultiThreadUtil.newInstance(3);
         ITask<ResultBean<String>, User> task = new TestTask();
         // 辅助参数  加数
         Map<String, Object> params = new HashMap<>();

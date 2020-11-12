@@ -10,7 +10,7 @@ class JavaExampleApplicationTests {
 	@Test
 	void contextLoads() {
 		MysqlGenerator generator = new MysqlGenerator();
-		generator.generator("goods_store");
+		generator.generator("veh_vehicle");
 	}
 
 }

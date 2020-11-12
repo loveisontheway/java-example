@@ -188,7 +188,7 @@ public class SuperGenerator {
                 .setEntityName("%s")
                 .setMapperName("%sMapper")
                 .setXmlName("%sMapper")
-                .setServiceName("I%sService")
+                .setServiceName("%sService")
                 .setServiceImplName("%sServiceImpl")
                 .setControllerName("%sController");
     }

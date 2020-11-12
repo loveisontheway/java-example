@@ -4,7 +4,7 @@ import com.muxi.java.example.mapper.UserMpMapper;
 import com.muxi.java.example.model.UserMp;
 import com.muxi.java.example.service.IUserMpService;
 import com.muxi.java.example.utils.ITask;
-import com.muxi.java.example.utils.MultiThreadUtils;
+import com.muxi.java.example.utils.MultiThreadUtil;
 import com.muxi.java.example.utils.ResultBean;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -60,7 +60,7 @@ public class UserMpServiceImpl extends ServiceImpl<UserMpMapper, UserMp> impleme
         data.add(user5);
 
         // 创建多线程处理任务
-        MultiThreadUtils<UserMp> threadUtils = MultiThreadUtils.newInstance(3);
+        MultiThreadUtil<UserMp> threadUtils = MultiThreadUtil.newInstance(3);
         ITask<ResultBean<String>, UserMp> task = new UserMpServiceImpl();
         // 辅助参数  加数
         Map<String, Object> params = new HashMap<>();

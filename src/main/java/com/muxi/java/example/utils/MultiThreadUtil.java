@@ -17,8 +17,8 @@ import org.slf4j.LoggerFactory;
 /**
  * MultiThreadUtils
  */
-public class MultiThreadUtils<T> {
-    private static Logger logger = LoggerFactory.getLogger(MultiThreadUtils.class);
+public class MultiThreadUtil<T> {
+    private static Logger logger = LoggerFactory.getLogger(MultiThreadUtil.class);
 
     // 线程个数，如不赋值，默认为5
     private int threadCount = 5;
@@ -33,8 +33,8 @@ public class MultiThreadUtils<T> {
      * @param threadCount
      * @return MultiThreadUtils
      */
-    public static MultiThreadUtils newInstance(int threadCount) {
-        MultiThreadUtils instance = new MultiThreadUtils();
+    public static MultiThreadUtil newInstance(int threadCount) {
+        MultiThreadUtil instance = new MultiThreadUtil();
         threadCount = threadCount;
         instance.setThreadCount(threadCount);
 
