@@ -24,6 +24,7 @@ public class MultiThreadUtil<T> {
     private int threadCount = 5;
     // 具体业务任务
     private ITask<ResultBean<String>, T> task;
+
     // 线程池管理器
     private CompletionService<ResultBean> pool = null;
 

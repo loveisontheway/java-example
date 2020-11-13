@@ -1,6 +1,6 @@
 package com.muxi.java.example.service;
 
-import com.muxi.java.example.model.UserMp;
+import com.muxi.java.example.domain.UserMp;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

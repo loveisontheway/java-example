@@ -1,4 +1,4 @@
-package com.muxi.java.example.model;
+package com.muxi.java.example.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

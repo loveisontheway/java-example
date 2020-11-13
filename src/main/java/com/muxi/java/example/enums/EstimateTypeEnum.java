@@ -1,11 +1,11 @@
 package com.muxi.java.example.enums;
 
-/**
- * 评估类别 枚举
- *
- * @author jl.jiang 2020/10/12
- */
-public enum EstimateTypeEnum {
+    /**
+     * 评估类别 枚举
+     *
+     * @author jl.jiang 2020/10/12
+     */
+    public enum EstimateTypeEnum {
 
     E2501("E2501", "车辆使用情况"),
     E2502("E2502", "车辆违章情况"),

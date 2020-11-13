@@ -67,7 +67,7 @@ public class SuperGenerator {
         return new PackageConfig()
                 .setParent("com.muxi.java.example")
                 .setController("web")
-                .setEntity("model")
+                .setEntity("domain")
                 .setMapper("mapper")
                 .setService("service")
                 .setServiceImpl("service.impl");

@@ -1,6 +1,6 @@
 package com.muxi.java.example.service;
 
-import com.muxi.java.example.model.GoodsStore;
+import com.muxi.java.example.domain.GoodsStore;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

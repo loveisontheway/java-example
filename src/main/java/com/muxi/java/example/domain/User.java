@@ -1,4 +1,4 @@
-package com.muxi.java.example.model;
+package com.muxi.java.example.domain;
 
 public class User {
     private String name;

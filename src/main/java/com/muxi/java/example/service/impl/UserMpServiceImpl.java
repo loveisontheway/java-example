@@ -1,7 +1,7 @@
 package com.muxi.java.example.service.impl;
 
 import com.muxi.java.example.mapper.UserMpMapper;
-import com.muxi.java.example.model.UserMp;
+import com.muxi.java.example.domain.UserMp;
 import com.muxi.java.example.service.IUserMpService;
 import com.muxi.java.example.utils.ITask;
 import com.muxi.java.example.utils.MultiThreadUtil;

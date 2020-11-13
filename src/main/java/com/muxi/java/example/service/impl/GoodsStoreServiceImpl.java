@@ -2,14 +2,12 @@ package com.muxi.java.example.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.muxi.java.example.model.GoodsStore;
+import com.muxi.java.example.domain.GoodsStore;
 import com.muxi.java.example.mapper.GoodsStoreMapper;
 import com.muxi.java.example.redis.RedisLock;
 import com.muxi.java.example.service.IGoodsStoreService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

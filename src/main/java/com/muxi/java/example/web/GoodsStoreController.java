@@ -1,7 +1,7 @@
 package com.muxi.java.example.web;
 
 
-import com.muxi.java.example.model.GoodsStore;
+import com.muxi.java.example.domain.GoodsStore;
 import com.muxi.java.example.service.IGoodsStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

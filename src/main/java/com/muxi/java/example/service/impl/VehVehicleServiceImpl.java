@@ -1,6 +1,6 @@
 package com.muxi.java.example.service.impl;
 
-import com.muxi.java.example.model.VehVehicle;
+import com.muxi.java.example.domain.VehVehicle;
 import com.muxi.java.example.mapper.VehVehicleMapper;
 import com.muxi.java.example.service.VehVehicleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

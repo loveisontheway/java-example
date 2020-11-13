@@ -1,6 +1,6 @@
 package com.muxi.java.example.mapper;
 
-import com.muxi.java.example.model.UserMp;
+import com.muxi.java.example.domain.UserMp;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

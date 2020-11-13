@@ -1,8 +1,11 @@
 package com.muxi.java.example;
 
 
+import com.muxi.java.example.consts.DateConst;
+import com.muxi.java.example.enums.EstimateTypeEnum;
+import com.muxi.java.example.utils.DateUtil;
 import com.muxi.java.example.utils.MultiThreadUtil;
-import com.muxi.java.example.model.User;
+import com.muxi.java.example.domain.User;
 import com.muxi.java.example.utils.ITask;
 import com.muxi.java.example.utils.ResultBean;
 
@@ -18,6 +21,10 @@ public class TestTask implements ITask<ResultBean<String>, User> {
 
     @Override
     public ResultBean execute(User e, Map<String, Object> params) {
+
+        String date = DateConst.DATE;
+        Integer year = DateUtil.getYear();
+        String val = EstimateTypeEnum.getName("E2501");
         /**
          * 具体业务逻辑：将list中的元素加上辅助参数中的数据返回
          */
