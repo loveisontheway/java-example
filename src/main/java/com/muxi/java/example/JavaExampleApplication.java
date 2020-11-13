@@ -1,16 +1,16 @@
 package com.muxi.java.example;
 
-import com.muxi.java.example.netty.client.NettyClient;
 import com.muxi.java.example.netty.server.NettyServer;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.net.InetSocketAddress;
 
-@MapperScan("com.muxi.java.example.mapper")
-@SpringBootApplication
+@MapperScan({"com.muxi.java.example.mapper", "com.muxi.java.example.mapper.other"})
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableScheduling   // 开启定时任务的配置
 public class JavaExampleApplication {
 

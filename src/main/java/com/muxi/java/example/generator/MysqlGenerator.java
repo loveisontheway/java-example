@@ -23,11 +23,7 @@ package com.muxi.java.example.generator;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 
 /**
- * <p>
  * Mysql代码生成器
- * </p>
- *
- * @author whh
  */
 public class MysqlGenerator extends SuperGenerator {
 
@@ -36,14 +32,29 @@ public class MysqlGenerator extends SuperGenerator {
      * MySQL generator
      * </p>
      */
-    public void generator(String tableName) {
-        // 代码生成器
-        AutoGenerator mpg = getAutoGenerator(tableName);
+    public void generatorDefault(String tableName) {
+        // 代码生成器 default
+        AutoGenerator mpg = getAutoGeneratorDefault(tableName);
         mpg.execute();
         if (tableName == null) {
-            System.err.println(" Generator Success !");
+            System.err.println(" Generator Default Success !");
         } else {
-            System.err.println(" TableName【 " + tableName + " 】" + "Generator Success !");
+            System.err.println(" TableName【 " + tableName + " 】" + "Generator Default Success !");
+
+        }
+    }
+
+    /**
+     * MySQL generator other
+     */
+    public void generatorOther(String tableName) {
+        // 代码生成器
+        AutoGenerator mpg = getAutoGeneratorOther(tableName);
+        mpg.execute();
+        if (tableName == null) {
+            System.err.println(" Generator Other Success !");
+        } else {
+            System.err.println(" TableName【 " + tableName + " 】" + "Generator Other Success !");
 
         }
     }

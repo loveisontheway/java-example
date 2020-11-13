@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.muxi.java.example.consts.DataTypeConst;
 import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
 
@@ -19,11 +20,9 @@ import java.net.URL;
 import java.util.*;
 
 /**
- * <p>
  * 代码生成器父类
- * </p>
  *
- * @author whh
+ * @author muxi
  */
 public class SuperGenerator {
 
@@ -41,7 +40,7 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected InjectionConfig getInjectionConfig() {
+    protected InjectionConfig getInjectionConfig(String mapperTag) {
         return new InjectionConfig() {
             @Override
             public void initMap() {
@@ -53,7 +52,7 @@ public class SuperGenerator {
             // 自定义输出文件目录
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return getResourcePath() + "/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return getResourcePath() + "/" + mapperTag.replace(".", "/") + "/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         }));
     }
@@ -63,14 +62,14 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected PackageConfig getPackageConfig() {
+    protected PackageConfig getPackageConfig(String mapperTag) {
         return new PackageConfig()
                 .setParent("com.muxi.java.example")
-                .setController("web")
+                .setController("controller")
                 .setEntity("domain")
-                .setMapper("mapper")
-                .setService("service")
-                .setServiceImpl("service.impl");
+                .setMapper(mapperTag)
+                .setService(mapperTag.contains(".") ? "service" + mapperTag.substring(mapperTag.indexOf(".")) : "service")
+                .setServiceImpl(mapperTag.contains(".") ? "service" + mapperTag.substring(mapperTag.indexOf(".")) + ".impl" : "service.impl");
     }
 
     /**
@@ -133,35 +132,31 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected DataSourceConfig getDataSourceConfig() {
-        DBSetting dbSetting = readSetting();
+    protected DataSourceConfig getDataSourceConfig(DBSetting dbSetting) {
+//        DBSetting dbSetting = readSetting();
         return new DataSourceConfig()
                 .setDbType(DbType.MYSQL)// 数据库类型
                 .setTypeConvert(new MySqlTypeConvert() {
                     @Override
                     public IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType) {
-                        if (fieldType.toLowerCase().equals("bit")) {
+                        if (DataTypeConst.BIT.equals(fieldType.toLowerCase())) {
                             return DbColumnType.BOOLEAN;
                         }
-                        if (fieldType.toLowerCase().equals("tinyint")) {
+                        if (DataTypeConst.TINYINT.equals(fieldType.toLowerCase())) {
                             return DbColumnType.BOOLEAN;
                         }
-                        if (fieldType.toLowerCase().equals("date")) {
+                        if (DataTypeConst.DATE.equals(fieldType.toLowerCase())) {
                             return DbColumnType.LOCAL_DATE;
                         }
-                        if (fieldType.toLowerCase().equals("time")) {
+                        if (DataTypeConst.TIME.equals(fieldType.toLowerCase())) {
                             return DbColumnType.LOCAL_TIME;
                         }
-                        if (fieldType.toLowerCase().equals("datetime")) {
+                        if (DataTypeConst.DATETIME.equals(fieldType.toLowerCase())) {
                             return DbColumnType.LOCAL_DATE_TIME;
                         }
                         return super.processTypeConvert(globalConfig, fieldType);
                     }
                 })
-//                .setDriverName("com.mysql.jdbc.Driver")
-//                .setUsername("test")
-//                .setPassword("aiuY67%9*66")
-//                .setUrl("jdbc:mysql://10.5.151.180:3306/test?useUnicode=true&characterEncoding=UTF-8&&useSSL=false");
                 .setDriverName(dbSetting.getDriverName())
                 .setUsername(dbSetting.getUserName())
                 .setPassword(dbSetting.getPassword())
@@ -225,7 +220,7 @@ public class SuperGenerator {
     /**
      * 读取数据库配置
      */
-    private DBSetting readSetting() {
+    private DBSetting readSetting(String dataSourceTag) {
         DBSetting setting = new DBSetting();
         try {
             Yaml yaml = new Yaml();
@@ -233,9 +228,9 @@ public class SuperGenerator {
             if (url != null) {
                 //获取test.yaml文件中的配置数据，然后转换为map
                 Map map = (Map) yaml.load(new FileInputStream(url.getFile()));
-                Map rstMap = (Map) map.get("spring");
+                Map rstMap = (Map) map.get("datasource");
                 if (rstMap != null) {
-                    rstMap = (Map) rstMap.get("datasource");
+                    rstMap = (Map) rstMap.get(dataSourceTag);
                 }
                 if (rstMap != null) {
                     setting.setDriverName(String.valueOf(rstMap.get("driver-class-name")));
@@ -256,18 +251,38 @@ public class SuperGenerator {
      * @param tableName
      * @return
      */
-    protected AutoGenerator getAutoGenerator(String tableName) {
+    protected AutoGenerator getAutoGeneratorDefault(String tableName) {
+        DBSetting dbSetting = readSetting("default");
+        String mapperTag = "mapper";
         return new AutoGenerator()
                 // 全局配置
                 .setGlobalConfig(getGlobalConfig())
                 // 数据源配置
-                .setDataSource(getDataSourceConfig())
+                .setDataSource(getDataSourceConfig(dbSetting))
                 // 策略配置
                 .setStrategy(getStrategyConfig(tableName))
                 // 包配置
-                .setPackageInfo(getPackageConfig())
+                .setPackageInfo(getPackageConfig(mapperTag))
                 // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
-                .setCfg(getInjectionConfig())
+                .setCfg(getInjectionConfig(mapperTag))
                 .setTemplate(getTemplateConfig());
     }
+
+    protected AutoGenerator getAutoGeneratorOther(String tableName) {
+        DBSetting dbSetting = readSetting("other");
+        String mapperTag = "mapper.other";
+        return new AutoGenerator()
+                // 全局配置
+                .setGlobalConfig(getGlobalConfig())
+                // 数据源配置
+                .setDataSource(getDataSourceConfig(dbSetting))
+                // 策略配置
+                .setStrategy(getStrategyConfig(tableName))
+                // 包配置
+                .setPackageInfo(getPackageConfig(mapperTag))
+                // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
+                .setCfg(getInjectionConfig(mapperTag))
+                .setTemplate(getTemplateConfig());
+    }
+
 }

@@ -10,7 +10,13 @@ class JavaExampleApplicationTests {
 	@Test
 	void contextLoads() {
 		MysqlGenerator generator = new MysqlGenerator();
-		generator.generator("veh_vehicle");
+		generator.generatorDefault("dev_image");
 	}
+
+	/*@Test
+	void contextLoadsOther() {
+		MysqlGenerator generator = new MysqlGenerator();
+		generator.generatorOther("sys_user");
+	}*/
 
 }
