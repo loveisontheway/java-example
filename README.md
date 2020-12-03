@@ -7,6 +7,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 + [Environment](https://github.com/loveisontheway/java-example#Environment)
 + [Project](https://github.com/loveisontheway/java-example#Project)
 + [Generator](https://github.com/loveisontheway/java-example#Generator)
++ [Solution](https://github.com/loveisontheway/java-example#Solution)
 
 ## Environment
 + `JDK:` 1.8+
@@ -33,6 +34,12 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.example.thread | 多线程相关案例 |
 | com.muxi.java.example.utils | 工具包类 |
 | com.muxi.java.example.web | Controller层 |
+
+## Solution
++ K8S ➔ 部署需要大量服务器（适合大型项目）
++ 车辆历史轨迹 ➔ Kafka（中间件）➔ 分发数据，读（ES）| 写（MySQL）
++ GPS ➔ Kafka ➔ ES | MySQL
++ Redis 解决缓存失效问题，也要注重缓存不断写入问题
 
 ## Generator
 在`com.muxi.java.example`包下，`JavaExampleApplicationTests.java`类根据表名逆向生成。
