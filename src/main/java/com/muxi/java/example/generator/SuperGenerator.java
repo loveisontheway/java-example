@@ -65,7 +65,7 @@ public class SuperGenerator {
     protected PackageConfig getPackageConfig(String mapperTag) {
         return new PackageConfig()
                 .setParent("com.muxi.java.example")
-                .setController("controller")
+                .setController("web")
                 .setEntity("domain")
                 .setMapper(mapperTag)
                 .setService(mapperTag.contains(".") ? "service" + mapperTag.substring(mapperTag.indexOf(".")) : "service")

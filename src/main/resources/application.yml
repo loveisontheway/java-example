@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB # SpringBoot的默认上传文件的大小是2mb，如果上传的文件超过2mb就会抛异常。因此，需要配置文件大小
+      max-request-size: 50MB
   application:
     name: Redis Distribute Lock
   redis:

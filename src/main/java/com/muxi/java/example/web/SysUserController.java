@@ -1,4 +1,4 @@
-package com.muxi.java.example.controller;
+package com.muxi.java.example.web;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

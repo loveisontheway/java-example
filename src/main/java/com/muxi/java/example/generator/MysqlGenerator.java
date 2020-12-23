@@ -40,7 +40,6 @@ public class MysqlGenerator extends SuperGenerator {
             System.err.println(" Generator Default Success !");
         } else {
             System.err.println(" TableName【 " + tableName + " 】" + "Generator Default Success !");
-
         }
     }
 
@@ -55,7 +54,6 @@ public class MysqlGenerator extends SuperGenerator {
             System.err.println(" Generator Other Success !");
         } else {
             System.err.println(" TableName【 " + tableName + " 】" + "Generator Other Success !");
-
         }
     }
 }
