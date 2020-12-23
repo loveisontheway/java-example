@@ -21,18 +21,22 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | `package name` | `description` |
 | :------ | :------ |
 | com.muxi.java.example.basic | Java基础案例（8大基本数据类型、abstract、interface、装箱拆箱） |
-| com.muxi.java.example.generator | Mybatis-Plus代码自动生成器 |
 | com.muxi.java.example.config | 配置信息：定时任务 Scheduler、多线程 MultiThread、代码自动生成器 MybatisPlus |
+| com.muxi.java.example.consts | 常量类 |
+| com.muxi.java.example.domain | 实体类 |
+| com.muxi.java.example.enums | 枚举类 |
+| com.muxi.java.example.generator | Mybatis-Plus代码自动生成器 |
+| com.muxi.java.example.io | IO流，文件上传下载 |
 | com.muxi.java.example.list | List集合操作案例 |
 | com.muxi.java.example.mapper | Mapper数据访问持久层 |
-| com.muxi.java.example.model | 实体类Bean |
 | com.muxi.java.example.netty | 网络编程 |
+| com.muxi.java.example.office | 文档，POI |
 | com.muxi.java.example.redis | 简单的Redis分布式锁，基于秒杀系统库存数实现 |
 | com.muxi.java.example.service | Service接口 |
 | com.muxi.java.example.service.impl | 业务逻辑处理 |
 | com.muxi.java.example.task | 定时任务 |
 | com.muxi.java.example.thread | 多线程相关案例 |
-| com.muxi.java.example.utils | 工具包类 |
+| com.muxi.java.example.utils | 工具类 |
 | com.muxi.java.example.web | Controller层 |
 
 ## Solution
