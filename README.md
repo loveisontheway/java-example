@@ -1,7 +1,7 @@
 java-example ![alt tag](https://api.travis-ci.org/phishman3579/java-algorithms-implementation.svg?branch=master)
 ==============================
 
-Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，结合Java基础、多线程、集合、Netty、MyBatis-Plus（代码自动生成器）、定时任务。
+Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，结合Java基础、多线程、集合、Netty、MyBatis-Plus（代码自动生成器，支持多数据源）、定时任务、文件上传下载。
 
 ## Table of Contents
 + [Environment](https://github.com/loveisontheway/java-example#Environment)
@@ -41,8 +41,8 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 
 ## Solution
 + K8S ➔ 部署需要大量服务器（适合大型项目）
-+ 车辆历史轨迹 ➔ Kafka（中间件）➔ 分发数据，读（ES）| 写（MySQL）
-+ GPS ➔ Kafka ➔ ES | MySQL
++ 车辆历史轨迹 ➔ Kafka（中间件）➔ 分发数据，读（Elasticsearch）| 写（MySQL）
++ GPS ➔ Kafka ➔ Elasticsearch | MySQL
 + Redis 解决缓存失效问题，也要注重缓存不断写入问题
 
 ## Generator

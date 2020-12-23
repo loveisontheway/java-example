@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * File upload and download
+ * File upload and download（使用 Postman 工具请求接口，测试）
  *
  * @author jl.jiang 2020/12/21
  */
