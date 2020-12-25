@@ -32,6 +32,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.example.netty | 网络编程 |
 | com.muxi.java.example.office | 文档，POI |
 | com.muxi.java.example.redis | 简单的Redis分布式锁，基于秒杀系统库存数实现 |
+| com.muxi.java.example.redisson | 基于 Redis的分布式锁 Redisson |
 | com.muxi.java.example.service | Service接口 |
 | com.muxi.java.example.service.impl | 业务逻辑处理 |
 | com.muxi.java.example.task | 定时任务 |
