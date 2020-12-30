@@ -47,7 +47,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 + Redis 解决缓存失效问题，也要注重缓存不断写入问题
 
 ## Generator
-- 数据库表结构和数据，执行`db.sql`文件即可（库、表、数据自动生成）
+- 在运行`JavaExampleApplication.main()`方法之前，先创建数据库表结构和数据，执行`db.sql`文件即可（库、表、数据自动生成）
 - 在`com.muxi.java.example`包下，`JavaExampleApplicationTests.java`类根据表名逆向生成。
 ```java
 @SpringBootTest
