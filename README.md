@@ -27,6 +27,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.example.enums | 枚举类 |
 | com.muxi.java.example.generator | Mybatis-Plus代码自动生成器 |
 | com.muxi.java.example.io | IO流，文件上传下载 |
+| com.muxi.java.example.kafka | 集成kafka，生产者消费者案例 |
 | com.muxi.java.example.list | List集合操作案例 |
 | com.muxi.java.example.mapper | Mapper数据访问持久层 |
 | com.muxi.java.example.netty | 网络编程 |
