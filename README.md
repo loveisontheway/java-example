@@ -24,25 +24,25 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | `package name` | `description` |
 | :------ | :------ |
 | com.muxi.java.example.basic | Java基础案例（8大基本数据类型、abstract、interface、装箱拆箱） |
-| com.muxi.****.*******.config | 配置信息：定时任务 Scheduler、多线程 MultiThread、代码自动生成器 MybatisPlus |
-| com.muxi.****.*******.consts | 常量类 |
-| com.muxi.****.*******.domain | 实体类 |
-| com.muxi.****.*******.enums | 枚举类 |
-| com.muxi.****.*******.generator | Mybatis-Plus代码自动生成器 |
-| com.muxi.****.*******.io | IO流，文件上传下载 |
-| com.muxi.****.*******.kafka | 集成kafka，生产者消费者案例 |
-| com.muxi.****.*******.list | List集合操作案例 |
-| com.muxi.****.*******.mapper | Mapper数据访问持久层 |
-| com.muxi.****.*******.netty | 网络编程 |
-| com.muxi.****.*******.office | 文档，POI |
-| com.muxi.****.*******.redis | 简单的Redis分布式锁，基于秒杀系统库存数实现 |
-| com.muxi.****.*******.redisson | 基于 Redis的分布式锁 Redisson |
-| com.muxi.****.*******.service | Service接口 |
-| com.muxi.****.*******.service.impl | 业务逻辑处理 |
-| com.muxi.****.*******.task | 定时任务 |
-| com.muxi.****.*******.thread | 多线程相关案例 |
-| com.muxi.****.*******.utils | 工具类 |
-| com.muxi.****.*******.web | Controller层 |
+| com.muxi.java.*******.config | 配置信息：定时任务 Scheduler、多线程 MultiThread、代码自动生成器 MybatisPlus |
+| com.muxi.java.*******.consts | 常量类 |
+| com.muxi.java.*******.domain | 实体类 |
+| com.muxi.java.*******.enums | 枚举类 |
+| com.muxi.java.*******.generator | Mybatis-Plus代码自动生成器 |
+| com.muxi.java.*******.io | IO流，文件上传下载 |
+| com.muxi.java.*******.kafka | 集成kafka，生产者消费者案例 |
+| com.muxi.java.*******.list | List集合操作案例 |
+| com.muxi.java.*******.mapper | Mapper数据访问持久层 |
+| com.muxi.java.*******.netty | 网络编程 |
+| com.muxi.java.*******.office | 文档，POI |
+| com.muxi.java.*******.redis | 简单的Redis分布式锁，基于秒杀系统库存数实现 |
+| com.muxi.java.*******.redisson | 基于 Redis的分布式锁 Redisson |
+| com.muxi.java.*******.service | Service接口 |
+| com.muxi.java.*******.service.impl | 业务逻辑处理 |
+| com.muxi.java.*******.task | 定时任务 |
+| com.muxi.java.*******.thread | 多线程相关案例 |
+| com.muxi.java.*******.utils | 工具类 |
+| com.muxi.java.*******.web | Controller层 |
 
 ## Solution
 + Kubernetes（K8S） ➔ 部署需要大量服务器（适合大型项目）
