@@ -52,7 +52,8 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 
 ## Generator
 - 在运行`JavaExampleApplication.main()`方法之前，先创建数据库表结构和数据，执行`db.sql`文件即可（库、表、数据自动生成）
-- 在`com.muxi.java.example`包下，`JavaExampleApplicationTests.java`类根据表名逆向生成。
+- 在`test.java.com.muxi.java.example`包下，`JavaExampleApplicationTests.java`类根据表名逆向生成。
+- `sys_role`：表名
 ```java
 @SpringBootTest
 class JavaExampleApplicationTests {
