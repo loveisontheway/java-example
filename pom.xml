@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>java-example</name>
 	<description>Java Example project for Spring Boot</description>
+	<url>http://www.liotw.com</url>
 
 	<properties>
 		<java.version>1.8</java.version>
