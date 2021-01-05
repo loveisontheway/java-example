@@ -60,7 +60,7 @@ class JavaExampleApplicationTests {
 	@Test
 	void contextLoads() {
 		MysqlGenerator generator = new MysqlGenerator();
-		generator.generator("user_mp");
+		generator.generatorDefault("sys_role");
 	}
 
 }
