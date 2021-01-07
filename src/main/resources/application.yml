@@ -45,10 +45,10 @@ spring:
   application:
     name: Redis Distribute Lock
   redis:
-    host: 192.168.0.116
+    host: 192.168.0.202
     port: 6379
     timeout: 20000
-    password:
+    password: tyb123
     database: 0
     jedis:
       pool:
