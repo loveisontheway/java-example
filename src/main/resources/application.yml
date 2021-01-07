@@ -45,7 +45,7 @@ spring:
   application:
     name: Redis Distribute Lock
   redis:
-    host: 127.0.0.1
+    host: 192.168.0.116
     port: 6379
     timeout: 20000
     password:
@@ -67,12 +67,12 @@ spring:
 datasource:
   type: com.alibaba.druid.pool.DruidDataSource
   default:
-    url: jdbc:mysql://127.0.0.1:3306/test?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
+    url: jdbc:mysql://192.168.0.116:3306/test?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   other:
-    url: jdbc:mysql://127.0.0.1:3306/other?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
+    url: jdbc:mysql://192.168.0.116:3306/other?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
