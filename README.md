@@ -49,6 +49,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 + 车辆历史轨迹 ➔ Kafka（中间件）➔ 分发数据，读（Elasticsearch）| 写（MySQL）
 + GPS ➔ Kafka ➔ Elasticsearch | MySQL
 + Redis 解决缓存失效问题，也要注重缓存不断写入问题
++ 秒杀模拟测试地址：http://localhost:8099/test
 
 ## Generator
 - 在运行`JavaExampleApplication.main()`方法之前，先创建数据库表结构和数据，执行`db.sql`文件即可（库、表、数据自动生成）
