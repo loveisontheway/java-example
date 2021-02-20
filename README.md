@@ -28,6 +28,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.*******.consts | 常量类 |
 | com.muxi.java.*******.domain | 实体类 |
 | com.muxi.java.*******.enums | 枚举类 |
+| com.muxi.java.*******.exception | 异常类 |
 | com.muxi.java.*******.generator | Mybatis-Plus代码自动生成器 |
 | com.muxi.java.*******.io | IO流，文件上传下载 |
 | com.muxi.java.*******.kafka | 集成kafka，生产者消费者案例 |
