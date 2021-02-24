@@ -1,8 +1,5 @@
 package com.muxi.java.example.map;
 
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * - 容器里有很多把锁，每一把锁用于锁容器中其中一部分数据，
  * - 那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，
  * - 从而可以有效提高并发访问效率，这就是ConcurrentHashMap所使用的锁分段技术。
- * <p>
+ *
  * ConcurrentHashMap的结构
  * - ConcurrentHashMap是由Segment数组结构和HashEntry数据结构组成。
  * - Segment是一种可重入锁（ReentrantLock），在ConcurrentHashMap里扮演锁的角色；
