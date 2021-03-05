@@ -32,6 +32,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.*******.generator | Mybatis-Plus代码自动生成器 |
 | com.muxi.java.*******.io | IO流，文件上传下载 |
 | com.muxi.java.*******.kafka | 集成kafka，生产者消费者案例 |
+| com.muxi.java.*******.knife | 接口文档，swagger增强版 |
 | com.muxi.java.*******.list | List集合操作案例（单列） |
 | com.muxi.java.*******.map | Map接口（双列） |
 | com.muxi.java.*******.mapper | Mapper数据访问持久层 |
