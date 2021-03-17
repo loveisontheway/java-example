@@ -60,19 +60,19 @@ spring:
   #默认数据源配置
   # ?createDatabaseIfNotExist=true				// 数据库创建，存在则引用
   # &useUnicode=true&characterEncoding=utf-8	// 编码方式
-  # &serverTimezone=UTC                         // 设置时区
+  # &serverTimezone=UTC                         // 设置时区（UTC会影响时区问题，应设置成Asia/Shanghai）
   # &zeroDateTimeBehavior=convertToNull			// 当DateTime类型为0的时候转化为Null，而不是报异常
   # &transformedBitIsBoolean=true				// 允许bit转换成boolean型
   # &useSSL=false                               // 证书验证
 datasource:
   type: com.alibaba.druid.pool.DruidDataSource
   default:
-    url: jdbc:mysql://192.168.0.116:3306/test?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
+    url: jdbc:mysql://192.168.0.116:3306/test?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   other:
-    url: jdbc:mysql://192.168.0.116:3306/other?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
+    url: jdbc:mysql://192.168.0.116:3306/other?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
