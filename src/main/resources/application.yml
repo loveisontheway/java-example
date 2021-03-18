@@ -1,6 +1,13 @@
 server:
   port: 8099
 spring:
+  rabbitmq:
+    host: 192.168.0.150
+    port: 5672
+    virtual-host: /
+    username: tyb
+    password: tyb123
+    publisher-confirms: true
   kafka:
     bootstrap-servers: 192.168.0.150:9092
     producer:

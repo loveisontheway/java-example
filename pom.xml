@@ -150,7 +150,7 @@
 			<version>30.1-jre</version>
 		</dependency>
 
-		<!-- knife api doc-->
+		<!-- knife api doc -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -161,6 +161,16 @@
 			<groupId>com.github.xiaoymin</groupId>
 			<artifactId>knife4j-spring-ui</artifactId>
 			<version>3.0.2</version>
+		</dependency>
+
+		<!-- rabbitmq -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<dependency>
