@@ -11,6 +11,11 @@ import java.io.*;
  * - 常规流: FileInputStream、FileOutputStream
  * - 缓冲流: BufferedReader、BufferedWriter、BufferedInputStream、BufferedOutputStream
  *
+ * 注:
+ *    如果是不带缓冲的流，读取到一个字节或者字符的，就会直接输出数据了。
+ *    而带缓冲的流，读取到一个字节或者字符时，先不输出，而是等达到缓冲区的最大容量，才一次性输出。
+ *    减少IO操作，提高读写效率
+ *
  * @author jl.jiang 2021/3/30
  */
 public class ReadWriteStream {
