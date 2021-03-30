@@ -19,6 +19,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 + `Redis:` 2.2.x
 + `Redisson:` 3.14.x
 + `Kafka:` 2.3.x
++ `Elasticsearch:` 6.3.x
 
 ## Project
 | `package name` | `description` |
@@ -27,6 +28,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.*******.config | 配置信息：定时任务 Scheduler、多线程 MultiThread、代码自动生成器 MybatisPlus |
 | com.muxi.java.*******.consts | 常量类 |
 | com.muxi.java.*******.domain | 实体类 |
+| com.muxi.java.*******.elasticsearch | Elasticsearch分布式全文搜索引擎 |
 | com.muxi.java.*******.enums | 枚举类 |
 | com.muxi.java.*******.exception | 异常类 |
 | com.muxi.java.*******.generator | Mybatis-Plus代码自动生成器 |
