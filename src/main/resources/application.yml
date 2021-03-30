@@ -1,6 +1,9 @@
 server:
   port: 8099
 spring:
+  elasticsearch:
+    rest:
+      uris: 192.168.0.150:9200
   rabbitmq:
     host: 192.168.0.150
     port: 5672
