@@ -82,11 +82,8 @@ public class NowCoder {
      */
     public static String ReverseSentence(String str) {
         String[] strArr = str.split(" ");
-        StringBuffer sb = null;
-/*        for(String s : strArr){
-            System.out.println(s);
-        }*/
-        for (int i=strArr.length-1; i<= 0; i--) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = strArr.length - 1; i >= 0; i--) {
             sb.append(strArr[i]).append(" ");
         }
         return sb.toString();
