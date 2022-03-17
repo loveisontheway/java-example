@@ -8,8 +8,8 @@ spring:
     host: 192.168.0.150
     port: 5672
     virtual-host: /
-    username: tyb
-    password: tyb123
+    username: muxi
+    password: 123456
     publisher-confirms: true
   kafka:
     bootstrap-servers: 192.168.0.150:9092
@@ -55,10 +55,10 @@ spring:
   application:
     name: Redis Distribute Lock
   redis:
-    host: 192.168.0.202
+    host: localhost
     port: 6379
     timeout: 20000
-    password: tyb123
+    password:
     database: 0
     jedis:
       pool:
