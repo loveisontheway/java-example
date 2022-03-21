@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author jl.jiang 2022/3/21
  */
-public class HTTPClient {
+public class Http {
     /**
      * HTTPClient -> Third-party Interface
      * 通过HTTPClient访问第三方接口
