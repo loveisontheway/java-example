@@ -24,6 +24,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 ## Project
 | `package name` | `description` |
 | :------ | :------ |
+| com.muxi.java.example.array | Java Array（数组） |
 | com.muxi.java.example.basic | Java基础案例（8大基本数据类型、abstract、interface、装箱拆箱） |
 | com.muxi.java.*******.config | 配置信息：定时任务 Scheduler、多线程 MultiThread、代码自动生成器 MybatisPlus |
 | com.muxi.java.*******.consts | 常量类 |
