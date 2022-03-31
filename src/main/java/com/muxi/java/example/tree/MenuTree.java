@@ -20,7 +20,7 @@ public class MenuTree {
             return Objects.equals(m.getParentId(), root.getId());
         }).map(
                 (m) -> {
-                    m.setChildList(getChildrens(m, all));
+                    m.setChildren(getChildrens(m, all));
                     return m;
                 }
         ).collect(Collectors.toList());
@@ -57,7 +57,7 @@ public class MenuTree {
         // map -> peek
         List<Menu> collect = menus.stream()
                 .filter(m -> m.getParentId() == 0)
-                .peek(m -> m.setChildList(getChildrens(m, menus)))
+                .peek(m -> m.setChildren(getChildrens(m, menus)))
                 .collect(Collectors.toList());
         System.out.println("-------转json输出结果-------");
         System.out.println(JSON.toJSON(collect));
