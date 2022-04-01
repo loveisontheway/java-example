@@ -18,17 +18,17 @@ public abstract class TreeUtil {
      *
      * @param originalList 原始list数据
      * @param keyName      唯一标识（主键id）
+     * @param parentName   父标识（父id）
      * @return 组装后的集合
      */
-    public static <T> List<T> getTree(List<T> originalList, String keyName) throws Exception {
-        String parentFieldName = "pid";
+    public static <T> List<T> getTree(List<T> originalList, String keyName, String parentName) throws Exception {
         String childrenFieldName = "children";
 
         // 获取根节点，即找出父节点为空的对象
         List<T> topList = new ArrayList<>();
         for (int i = 0; i < originalList.size(); i++) {
             T t = originalList.get(i);
-            String parentId = BeanUtils.getProperty(t, parentFieldName);
+            String parentId = BeanUtils.getProperty(t, parentName);
             if (StringUtils.isBlank(parentId) || "0".equals(parentId)) {
                 topList.add(t);
             }
@@ -38,10 +38,9 @@ public abstract class TreeUtil {
         originalList.removeAll(topList);
 
         // 递归封装树
-        fillTree(topList, originalList, keyName, parentFieldName, childrenFieldName);
+        fillTree(topList, originalList, keyName, parentName, childrenFieldName);
         return topList;
     }
-
 
     /**
      * 封装树
@@ -49,17 +48,17 @@ public abstract class TreeUtil {
      * @param parentList        要封装为树的父对象集合
      * @param originalList      原始list数据
      * @param keyName           唯一标识（主键id）
-     * @param parentFieldName   模型中作为parent字段名称
+     * @param parentName        模型中作为parent字段名称
      * @param childrenFieldName 模型中作为children的字段名称
      */
-    public static <T> void fillTree(List<T> parentList, List<T> originalList, String keyName, String parentFieldName, String childrenFieldName) throws Exception {
+    public static <T> void fillTree(List<T> parentList, List<T> originalList, String keyName, String parentName, String childrenFieldName) throws Exception {
         for (int i = 0; i < parentList.size(); i++) {
-            List<T> children = fillChildren(parentList.get(i), originalList, keyName, parentFieldName, childrenFieldName);
+            List<T> children = fillChildren(parentList.get(i), originalList, keyName, parentName, childrenFieldName);
             if (children.isEmpty()) {
                 continue;
             }
             originalList.removeAll(children);
-            fillTree(children, originalList, keyName, parentFieldName, childrenFieldName);
+            fillTree(children, originalList, keyName, parentName, childrenFieldName);
         }
     }
 
@@ -69,15 +68,15 @@ public abstract class TreeUtil {
      * @param parent            父对象
      * @param originalList      待处理对象集合
      * @param keyName           唯一标识（主键id）
-     * @param parentFieldName   模型中作为parent字段名称
+     * @param parentName        模型中作为parent字段名称
      * @param childrenFieldName 模型中作为children的字段名称
      */
-    public static <T> List<T> fillChildren(T parent, List<T> originalList, String keyName, String parentFieldName, String childrenFieldName) throws Exception {
+    public static <T> List<T> fillChildren(T parent, List<T> originalList, String keyName, String parentName, String childrenFieldName) throws Exception {
         List<T> childList = new ArrayList<>();
         String parentId = BeanUtils.getProperty(parent, keyName);
         for (int i = 0; i < originalList.size(); i++) {
             T t = originalList.get(i);
-            String childParentId = BeanUtils.getProperty(t, parentFieldName);
+            String childParentId = BeanUtils.getProperty(t, parentName);
             if (parentId.equals(childParentId)) {
                 childList.add(t);
             }
