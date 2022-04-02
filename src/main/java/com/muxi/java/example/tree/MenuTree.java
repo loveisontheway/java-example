@@ -1,67 +1,98 @@
 package com.muxi.java.example.tree;
 
-import com.alibaba.fastjson.JSON;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class MenuTree {
+/**
+ * Tree Node
+ *
+ * @author jjl on 2022/3/31
+ */
+abstract class TreeUtil {
     /**
-     * 递归查询子节点
+     * 把列表转换为树结构
      *
-     * @param root 根节点
-     * @param all  所有节点
-     * @return 根节点信息
+     * @param originalList 原始list数据
+     * @param keyName      唯一标识（主键id）
+     * @param parentName   父标识（父id）
+     * @return 组装后的集合
      */
-    private static List<Menu> getChildrens(Menu root, List<Menu> all) {
-        List<Menu> children = all.stream().filter(m -> {
-            return Objects.equals(m.getParentId(), root.getId());
-        }).map(
-                (m) -> {
-                    m.setChildren(getChildrens(m, all));
-                    return m;
-                }
-        ).collect(Collectors.toList());
-        return children;
+    public static <T> List<T> getTree(List<T> originalList, String keyName, String parentName) {
+        String childrenFieldName = "children";
+
+        // 获取根节点，即找出父节点为空的对象
+        List<T> topList = new ArrayList<>();
+        for (int i = 0; i < originalList.size(); i++) {
+            T t = originalList.get(i);
+            String parentId = null;
+            try {
+                parentId = BeanUtils.getProperty(t, parentName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (StringUtils.isBlank(parentId) || "0".equals(parentId)) {
+                topList.add(t);
+            }
+        }
+
+        // 将根节点从原始list移除，减少下次处理数据
+        originalList.removeAll(topList);
+
+        // 递归封装树
+        try {
+            fillTree(topList, originalList, keyName, parentName, childrenFieldName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return topList;
     }
 
-    public static void main(String[] args) {
-
-        // 模拟从数据库查询出来
-        List<Menu> menus = Arrays.asList(
-                new Menu(1, "根节点", 0),
-                new Menu(2, "子节点1", 1),
-                new Menu(3, "子节点1.1", 2),
-                new Menu(4, "子节点1.2", 2),
-                new Menu(5, "根节点1.3", 2),
-                new Menu(6, "根节点2", 1),
-                new Menu(7, "根节点2.1", 6),
-                new Menu(8, "根节点2.2", 6),
-                new Menu(9, "根节点2.2.1", 7),
-                new Menu(10, "根节点2.2.2", 7),
-                new Menu(11, "根节点3", 1),
-                new Menu(12, "根节点3.1", 11)
-        );
-
-        //获取父节点
-/*        List<Menu> collect = menus.stream().filter(m -> m.getParentId() == 0).map(
-                (m) -> {
-                    m.setChildList(getChildrens(m, menus));
-                    return m;
-                }
-        ).collect(Collectors.toList());*/
-
-
-        // map -> peek
-        List<Menu> collect = menus.stream()
-                .filter(m -> m.getParentId() == 0)
-                .peek(m -> m.setChildren(getChildrens(m, menus)))
-                .collect(Collectors.toList());
-        System.out.println("-------转json输出结果-------");
-        System.out.println(JSON.toJSON(collect));
-
+    /**
+     * 封装树
+     *
+     * @param parentList        要封装为树的父对象集合
+     * @param originalList      原始list数据
+     * @param keyName           唯一标识（主键id）
+     * @param parentName        模型中作为parent字段名称
+     * @param childrenFieldName 模型中作为children的字段名称
+     */
+    public static <T> void fillTree(List<T> parentList, List<T> originalList, String keyName, String parentName, String childrenFieldName) throws Exception {
+        for (int i = 0; i < parentList.size(); i++) {
+            List<T> children = fillChildren(parentList.get(i), originalList, keyName, parentName, childrenFieldName);
+            if (children.isEmpty()) {
+                continue;
+            }
+            originalList.removeAll(children);
+            fillTree(children, originalList, keyName, parentName, childrenFieldName);
+        }
     }
 
+    /**
+     * 封装子对象
+     *
+     * @param parent            父对象
+     * @param originalList      待处理对象集合
+     * @param keyName           唯一标识（主键id）
+     * @param parentName        模型中作为parent字段名称
+     * @param childrenFieldName 模型中作为children的字段名称
+     */
+    public static <T> List<T> fillChildren(T parent, List<T> originalList, String keyName, String parentName, String childrenFieldName) throws Exception {
+        List<T> childList = new ArrayList<>();
+        String parentId = BeanUtils.getProperty(parent, keyName);
+        for (int i = 0; i < originalList.size(); i++) {
+            T t = originalList.get(i);
+            String childParentId = BeanUtils.getProperty(t, parentName);
+            if (parentId.equals(childParentId)) {
+                childList.add(t);
+            }
+        }
+        if (!childList.isEmpty()) {
+            FieldUtils.writeDeclaredField(parent, childrenFieldName, childList, true);
+        }
+        return childList;
+    }
 }
