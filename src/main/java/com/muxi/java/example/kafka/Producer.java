@@ -1,7 +1,8 @@
 package com.muxi.java.example.kafka;
 
 import com.alibaba.fastjson.JSONObject;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
@@ -16,8 +17,9 @@ import javax.annotation.Resource;
  * @author jl.jiang 2021/1/4
  */
 @Component
-@Slf4j
 public class Producer {
+
+    private static final Logger log = LoggerFactory.getLogger(Producer.class);
 
     @Resource
     private KafkaTemplate<String, Object> kafkaTemplate;

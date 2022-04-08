@@ -1,18 +1,21 @@
 package com.muxi.java.example.config;
 
 import com.muxi.java.example.enums.DBTypeEnum;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
 @Order(value = -100)
-@Slf4j
 @Aspect
 public class DataSourceSwitchAspect {
+
+    private static final Logger log = LoggerFactory.getLogger(DataSourceSwitchAspect.class);
+
     @Pointcut("execution(* com.muxi.java.example.mapper..*.*(..))")
     private void defaultDBAspect() {
     }

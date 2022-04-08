@@ -6,8 +6,11 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 ## Table of Contents
 + [Environment](https://github.com/loveisontheway/java-example#Environment)
 + [Project](https://github.com/loveisontheway/java-example#Project)
-+ [Generator](https://github.com/loveisontheway/java-example#Generator)
++ [Redis](https://github.com/loveisontheway/java-example#Redis)
++ [Lock](https://github.com/loveisontheway/java-example#Lock)
 + [Solution](https://github.com/loveisontheway/java-example#Solution)
++ [Hutool](https://github.com/loveisontheway/java-example#Hutool)
++ [Generator](https://github.com/loveisontheway/java-example#Generator)
 
 ## Environment
 + `JDK:` 1.8+
@@ -34,6 +37,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.*******.exception | 异常类 |
 | com.muxi.java.*******.generator | Mybatis-Plus代码自动生成器 |
 | com.muxi.java.*******.http | HTTPClient & RestTemplate 访问第三方接口 |
+| com.muxi.java.*******.hutool | 小而全的Java工具类库，避免重复造轮子 |
 | com.muxi.java.*******.io | IO流，文件上传下载; NIO读写拷贝 |
 | com.muxi.java.*******.kafka | 集成kafka，生产者消费者案例 |
 | com.muxi.java.*******.knife | 接口文档，swagger增强版 |
@@ -78,6 +82,11 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 + GPS ➔ Kafka ➔ Elasticsearch | MySQL
 + Redis 解决缓存失效问题，也要注重缓存不断写入问题
 + 秒杀模拟测试地址：http://localhost:8099/test
+
+## Hutool
++ Hutool是一个小而全的Java工具类库，
++ 通过静态方法封装，降低相关API的学习成本，提高工作效率，
++ 使Java拥有函数式语言般的优雅，让Java语言也可以“甜甜的”。
 
 ## Generator
 - 在运行`JavaExampleApplication.main()`方法之前，先创建数据库表结构和数据，执行`db.sql`文件即可（库、表、数据自动生成）

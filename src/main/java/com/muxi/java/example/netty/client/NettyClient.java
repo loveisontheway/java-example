@@ -1,5 +1,6 @@
 package com.muxi.java.example.netty.client;
 
+import com.muxi.java.example.config.DataSourceSwitchAspect;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -7,12 +8,15 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Netty客户端
  **/
-@Slf4j
 public class NettyClient {
+
+    private static final Logger log = LoggerFactory.getLogger(NettyClient.class);
 
     public void start() {
         EventLoopGroup group = new NioEventLoopGroup();
