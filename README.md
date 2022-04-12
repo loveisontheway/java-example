@@ -31,6 +31,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.example.basic | Java基础案例（8大基本数据类型、abstract、interface、装箱拆箱） |
 | com.muxi.java.*******.config | 配置信息：定时任务 Scheduler、多线程 MultiThread、代码自动生成器 MybatisPlus |
 | com.muxi.java.*******.consts | 常量类 |
+| com.muxi.java.*******.db | JAVA DB TO DB |
 | com.muxi.java.*******.domain | 实体类 |
 | com.muxi.java.*******.elasticsearch | Elasticsearch分布式全文搜索引擎 |
 | com.muxi.java.*******.enums | 枚举类 |
