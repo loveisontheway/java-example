@@ -1,114 +1,153 @@
 package com.muxi.java.example.db;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class SQLiteToMySQL {
 
-    private Connection getSqliteconn() {
+    public static final String SQL_TABLE_ALL = "select * from sqlite_master where type='table' order by name";
+
+    private Connection getSqliteCon(String path) {
         try {
             Class.forName("org.sqlite.JDBC");
-            return DriverManager.getConnection("jdbc:sqlite:D:\\sqlite.db");
+            return DriverManager.getConnection("jdbc:sqlite:" + path);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private Connection getMysqlconn() {
+    private Connection getMysqlCon() {
         try {
-            Class.forName("org.mariadb.jdbc.Driver");
-            return DriverManager.getConnection("jdbc:mariadb://localhost:3306/test", "root", "root");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/admin", "root", "root");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public void deal() throws SQLException {
-        // SQLite数据库
-        Connection iteconn = getSqliteconn();
-        Statement itestmt = iteconn.createStatement();
-        ResultSet iters = itestmt.executeQuery("select * from lagou_position");
+    public void execute(String path) {
+        try {
+            // MySQL数据库
+            Connection mysqlCon = getMysqlCon();
+            PreparedStatement mysqlStm = null;
 
-        // 结果集获取到的长度
-        int size = iters.getMetaData().getColumnCount();
-        // 比较懒，拼接insert into 语句
-        StringBuffer sbf = new StringBuffer();
-        sbf.append("insert into lagou values (");
-        String link = "";
-        for (int i = 0; i < size; i++) {
-            sbf.append(link).append("?");
-            link = ",";
-        }
-        sbf.append(")");
-        // MySQL数据库
-        Connection mysqlconn = getMysqlconn();
-        PreparedStatement mysqlpstmt = mysqlconn.prepareStatement(sbf.toString());
+            // SQLite数据库
+            Connection sqliteCon = getSqliteCon(path);
+            Statement sqliteStm = Objects.requireNonNull(sqliteCon).createStatement();
+            ResultSet sqliteRes = sqliteStm.executeQuery(SQL_TABLE_ALL);
 
-        // 取出结果集并向MySQL数据库插入数据 ( 使用批处理 )
-        // 完成条数
-        int count = 0;
-        int num = 0;
-        // 取消事务(不写入日志)
-        mysqlconn.setAutoCommit(false);
-        long start = System.currentTimeMillis();
-        while (iters.next()) {
-            ++count;
-            for (int i = 1; i <= size; i++) {
-                mysqlpstmt.setObject(i, iters.getObject(i));
+            // 1. SQLite查询ALL表名，MySQL创建ALL表
+            List<String> tableList = new ArrayList<>();
+            while (sqliteRes.next()) {
+                String table = sqliteRes.getString("name");
+                String sql = sqliteRes.getString("sql");
+                // 不创建 sqlite_sequence
+                if (!StrUtil.contains(table, "sqlite_sequence")) {
+                    tableList.add(table);
+                    // mysql > create > table
+                    sql = sql.replaceAll("\"", "`")
+                            // 表存在不创建
+                            .replace("CREATE TABLE", "CREATE TABLE IF NOT EXISTS")
+                            .replace("DEFAULT false", "")
+                            .replace("DEFAULT 信息价库", "")
+                            .replace("DEFAULT 浙江鼎晟工程项目管理有限公司", "")
+                            .replace("varchar", "varchar(500)")
+                            .replace("varhcar", "varchar(500)")
+                            .replace("smalldatetime", "datetime")
+                            .replace("COLLATE NOCASE", "")
+                            .replace("COLLATE BINARY", "")
+                            .replace("`is_expand` TEXT", "`is_expand` integer")
+                            // 自增 sqlite > mysql
+                            .replace("AUTOINCREMENT", "AUTO_INCREMENT");
+                    mysqlStm = Objects.requireNonNull(mysqlCon).prepareStatement(sql);
+                    mysqlStm.execute();
+                }
             }
 
-            // 将预先语句存储起来，这里还没有向数据库插入
-            mysqlpstmt.addBatch();
-            // 当count 到达 20000条时 向数据库提交
-            if (count % 20000 == 0) {
-                ++num;
-                mysqlpstmt.executeBatch();
-                System.out.println("第" + num + "次提交,耗时:" + (System.currentTimeMillis() - start) / 1000.0 + "s");
-            }
-        }
-        // 防止有数据未提交
-        mysqlpstmt.executeBatch();
-        // 提交
-        mysqlconn.commit();
-        System.out.println("完成 " + count + " 条数据,耗时:" + (System.currentTimeMillis() - start) / 1000.0 + "s");
-        // 恢复事务
-        //  mysqlconn.setAutoCommit(true);
+            // 2. SQLite查询Table数据，MySQL Table 添加数据
+            for (String table : tableList) {
+                String sql = "select * from " + table;
+                ResultSet res = sqliteStm.executeQuery(sql);
+                // true 有数据 | false 无数据
+                boolean flag = res.isBeforeFirst();
+                if (flag) {
+                    ResultSetMetaData rsmd = res.getMetaData();
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("insert into ").append(table).append(" values (");
+                    // 列名 All + 组装 insert SQL
+                    for (int k = 1; k <= rsmd.getColumnCount(); k++) {
+                        sb.append("?").append(",");
+                    }
+                    sb.append(")").deleteCharAt(sb.lastIndexOf(","));
 
-        // 关闭资源
-        close(mysqlconn, mysqlpstmt, null);
-        close(iteconn, itestmt, iters);
+                    mysqlStm = mysqlCon.prepareStatement(sb.toString());
+                    // 取消事务(不写入日志)
+                    mysqlCon.setAutoCommit(false);
+                    int count = 0;
+                    while (res.next()) {
+                        ++count;
+                        // 数据 All
+                        for (int k = 1; k <= rsmd.getColumnCount(); k++) {
+                            Object obj = res.getObject(k);
+                            mysqlStm.setObject(k, ObjectUtil.isEmpty(obj) ? null : obj);
+                        }
+                        System.out.println("SQL: " + mysqlStm.toString());
+                        // 添加需要批量处理的SQL语句或是参数（缓存未操作DB）
+                        mysqlStm.addBatch();
+                        // 500 提交一次
+                        if (count % 500 == 0) {
+                            // 执行批量处理语句；
+                            mysqlStm.executeBatch();
+                        }
+                    }
+
+                    // 防止有数据未提交
+                    mysqlStm.executeBatch();
+                    // 提交
+                    mysqlCon.commit();
+                    // 清空缓存的数据
+                    mysqlStm.clearBatch();
+                }
+            }
+
+            // 恢复事务
+            Objects.requireNonNull(mysqlCon).setAutoCommit(true);
+
+            // 3. 关闭资源
+            close(mysqlCon, mysqlStm, null);
+            close(sqliteCon, sqliteStm, sqliteRes);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    public void close(Connection conn, Statement stmt, ResultSet rs) {
-
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public void close(Connection con, Statement stm, ResultSet res) {
+        try {
+            if (res != null) {
+                res.close();
             }
-        }
-        if (stmt != null) {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (stm != null) {
+                stm.close();
             }
-        }
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (con != null) {
+                con.close();
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
         SQLiteToMySQL test = new SQLiteToMySQL();
         try {
-            test.deal();
+            test.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
