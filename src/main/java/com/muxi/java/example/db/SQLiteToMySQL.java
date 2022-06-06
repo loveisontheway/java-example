@@ -146,10 +146,6 @@ public class SQLiteToMySQL {
 
     public static void main(String[] args) {
         SQLiteToMySQL test = new SQLiteToMySQL();
-        try {
-            test.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        test.execute("");
     }
 }
