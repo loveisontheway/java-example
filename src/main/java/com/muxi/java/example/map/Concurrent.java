@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * JDK1.8
- * - ConcurrentHashMap没有用“锁分段”来实现线程安全，
+ * - ConcurrentHashMap没有用“锁分段"来实现线程安全，
  * - 而是使用CAS算法和synchronized来确保线程安全（每个数组的元素一把锁）
  * - 但是底层segment并没有被删除的。
  * JDK1.7
