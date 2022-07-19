@@ -36,6 +36,7 @@ public class DesUtil {
     /** 加密算法的参数接口，IvParameterSpec是它的一个实现 */
     private static AlgorithmParameterSpec aps = null;
     private static Key key = null;
+    private static Cipher cipher = null;
 
     public DesUtil() throws Exception {
         // 密钥参数
@@ -46,6 +47,8 @@ public class DesUtil {
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
         // 密钥对象
         key = keyFactory.generateSecret(keySpec);
+        // 加解密对象 Cipher
+        cipher = Cipher.getInstance(MODE);
     }
 
     /**
@@ -55,11 +58,9 @@ public class DesUtil {
      * @return String 加密数据
      */
     public String encode(String data) throws Exception {
-        // 得到加密对象Cipher
-        Cipher enCipher = Cipher.getInstance(MODE);
         // 设置工作模式为加密模式，给出密钥和向量
-        enCipher.init(Cipher.ENCRYPT_MODE, key, aps);
-        byte[] pwdByte = enCipher.doFinal(data.getBytes(CHARSET));
+        cipher.init(Cipher.ENCRYPT_MODE, key, aps);
+        byte[] pwdByte = cipher.doFinal(data.getBytes(CHARSET));
         BASE64Encoder en = new BASE64Encoder();
         return en.encode(pwdByte);
     }
@@ -71,10 +72,9 @@ public class DesUtil {
      * @return String 解密数据
      */
     public String decode(String data) throws Exception {
-        Cipher deCipher = Cipher.getInstance(MODE);
-        deCipher.init(Cipher.DECRYPT_MODE, key, aps);
+        cipher.init(Cipher.DECRYPT_MODE, key, aps);
         BASE64Decoder de = new BASE64Decoder();
-        byte[] pwdByte = deCipher.doFinal(de.decodeBuffer(data));
+        byte[] pwdByte = cipher.doFinal(de.decodeBuffer(data));
         return new String(pwdByte, CHARSET);
     }
 
