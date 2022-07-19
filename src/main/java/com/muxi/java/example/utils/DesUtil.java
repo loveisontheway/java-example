@@ -59,9 +59,9 @@ public class DesUtil {
         Cipher enCipher = Cipher.getInstance(MODE);
         // 设置工作模式为加密模式，给出密钥和向量
         enCipher.init(Cipher.ENCRYPT_MODE, key, aps);
-        byte[] pasByte = enCipher.doFinal(data.getBytes(CHARSET));
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        return base64Encoder.encode(pasByte);
+        byte[] pwdByte = enCipher.doFinal(data.getBytes(CHARSET));
+        BASE64Encoder en = new BASE64Encoder();
+        return en.encode(pwdByte);
     }
 
     /**
@@ -73,9 +73,9 @@ public class DesUtil {
     public String decode(String data) throws Exception {
         Cipher deCipher = Cipher.getInstance(MODE);
         deCipher.init(Cipher.DECRYPT_MODE, key, aps);
-        BASE64Decoder base64Decoder = new BASE64Decoder();
-        byte[] pasByte = deCipher.doFinal(base64Decoder.decodeBuffer(data));
-        return new String(pasByte, CHARSET);
+        BASE64Decoder de = new BASE64Decoder();
+        byte[] pwdByte = deCipher.doFinal(de.decodeBuffer(data));
+        return new String(pwdByte, CHARSET);
     }
 
     public static void main(String[] args) throws Exception {
