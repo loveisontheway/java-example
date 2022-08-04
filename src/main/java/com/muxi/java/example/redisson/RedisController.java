@@ -2,6 +2,7 @@ package com.muxi.java.example.redisson;
 
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import javax.annotation.Resource;
 public class RedisController {
 
     @Resource
-    private Redisson redisson;
+    private RedissonClient redisson;
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
