@@ -1,10 +1,14 @@
 package com.muxi.java.example.redisson;
 
-import org.redisson.Redisson;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.muxi.java.example.domain.UserMp;
+import com.muxi.java.example.service.IUserMpService;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +27,55 @@ public class RedisController {
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private IUserMpService userMpService;
+
+    /**
+     * Redisson分布式锁 - Test
+     */
+    @GetMapping("/redisson")
+    public String redisson() {
+        String key = "redisson:quantity";
+        String lkey = "lock_key";
+        RLock lock = redisson.getLock(lkey);
+        Integer stock = 0;
+        LambdaUpdateWrapper<UserMp> wrapper = new LambdaUpdateWrapper<>();
+        try {
+            // 上锁
+            lock.lock();
+            if (stringRedisTemplate.hasKey(key)) {
+                stock = Integer.valueOf(stringRedisTemplate.opsForValue().get(key));
+            } else {
+                UserMp userMp = userMpService.getById(1);
+                stock = userMp.getAge();
+                stringRedisTemplate.opsForValue().set(key, String.valueOf(stock));
+            }
+            // 减库存
+            if (stock > 0) {
+                stock--;
+                // redis >> stock
+                stringRedisTemplate.opsForValue().set(key, String.valueOf(stock));
+                System.out.println(">>>>>> 库存:" + stock);
+            } else {
+                // mysql >> stock（正常情况 > 更新库存）
+                wrapper.set(UserMp::getAge, stock);
+                wrapper.eq(UserMp::getId, 1);
+                userMpService.update(wrapper);
+                System.out.println("------ 库存不足");
+            }
+        } catch (Exception e) {
+            // mysql >> stock（异常情况 > 更新库存）
+            wrapper.set(UserMp::getAge, stock);
+            wrapper.eq(UserMp::getId, 1);
+            userMpService.update(wrapper);
+            return "库存:" + stock;
+        } finally {
+            // 释放锁
+            lock.unlock();
+        }
+        return "库存:" + stock;
+    }
 
     @RequestMapping("/redis")
     public String redis() {

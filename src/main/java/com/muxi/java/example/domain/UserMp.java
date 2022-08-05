@@ -16,7 +16,6 @@ import lombok.EqualsAndHashCode;
  * @author muxi
  * @since 2020-10-30
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("user_mp")
 public class UserMp implements Serializable {
@@ -57,4 +56,35 @@ public class UserMp implements Serializable {
 
     public static final String CREATE_TIME = "create_time";
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
