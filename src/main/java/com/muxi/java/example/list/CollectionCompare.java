@@ -3,10 +3,7 @@ package com.muxi.java.example.list;
 import com.muxi.java.example.domain.User;
 import org.springframework.util.StopWatch;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * for > iterator > foreach （性能：for最优，iterator其次，foreach最差）
@@ -14,7 +11,7 @@ import java.util.List;
  * 1. for遍历
  *      for(int i=0; i<arr.size(); i++){...}
  *
- * 2. iterator遍历
+ * 2. iterator遍历（用于Map、Set）
  *      Iterator it = arr.iterator();
  *      while(it.hasNext()){ object o =it.next(); ...}
  *
@@ -43,6 +40,29 @@ public class CollectionCompare {
         System.out.println("-------------- for: " + sw.getLastTaskTimeMillis() + " --------------");
 
         /** Iterator */
+        // Map
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "luna");
+        map.put("sex", "female");
+        map.put("age", "28");
+
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> str = iterator.next();
+            System.out.println(str);
+        }
+
+        // Set
+        Set<String> set = new HashSet<>();
+        set.add("世界军事");
+        set.add("兵器知识");
+        set.add("舰船知识");
+        set.add("汉和防务");
+        Iterator<String> iter = set.iterator();
+        while (iter.hasNext()) {
+            System.out.println(iter.next());
+        }
+
         Iterator<String> it = list.iterator();
         sw.start("iterator");
         while (it.hasNext()) {
