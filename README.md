@@ -40,6 +40,7 @@ Java Example project for Spring Boot. 个人案例项目，基于Spring Boot，�
 | com.muxi.java.*******.http | HTTPClient & RestTemplate 访问第三方接口 |
 | com.muxi.java.*******.hutool | 小而全的Java工具类库，避免重复造轮子 |
 | com.muxi.java.*******.io | IO流，文件上传下载; NIO读写拷贝 |
+| com.muxi.java.*******.jvm | 堆(heap)栈(stack) |
 | com.muxi.java.*******.kafka | 集成kafka，生产者消费者案例 |
 | com.muxi.java.*******.knife | 接口文档，swagger增强版 |
 | com.muxi.java.*******.lamda | Lamda表达式 |
