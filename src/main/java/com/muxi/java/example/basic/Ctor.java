@@ -14,29 +14,36 @@ package com.muxi.java.example.basic;
  * 类 Person3 添加 有参 构造方法              （实例化对象时：不通过 ）
  * 类 Person4 添加 无参 and 有参 构造方法      （实例化对象时：编译通过）
  * ---------------------------------------------------------------
+ *
  * @author jjl
  * @date 2022/10/14
  */
 public class Ctor {
     public static void main(String[] args) {
-        Person1 person1 = new Person1();//编译通过；①实例化Person对象    ②自动调用构造方法Person( )
-        Person2 person2 = new Person2();//编译通过；打印: 无参构造方法被调用
+        // 编译通过；①实例化Person对象  ②自动调用构造方法Person()
+        Person1 person1 = new Person1();
+        // 编译通过；打印: 无参构造方法被调用
+        Person2 person2 = new Person2();
         // 这样写，编译器会报错，原因是系统默认的无参构造方法被有参构造方法覆盖，编译器不能再提供无参构造方法
 //        Person3 person3 = new Person3();
-        //Person4 person4 = new Person4();//编译通过；打印: 无参构造方法被调用
+        // 编译通过；打印: 无参构造方法被调用
+        //Person4 person4 = new Person4();
         Person4 person4 = new Person4("qzz", "man", 18);//编译通过；
     }
 }
 
-// 定义类Person1   自己不手动添加任何无参或有参数构造方法
+/**
+ * 定义类Person1   自己不手动添加任何无参或有参数构造方法
+ */
 class Person1 {
     private int age;
     private String name;
     private String sex;
 }
 
-
-// 定义类Person2   自己添加无参的构造方法
+/**
+ * 定义类Person2   自己添加无参的构造方法
+ */
 class Person2 {
     private int age;
     private String name;
@@ -47,8 +54,9 @@ class Person2 {
     }
 }
 
-
-// 定义类Person3   有参数的构造方法
+/**
+ * 定义类Person3   有参数的构造方法
+ */
 class Person3 {
     private int age;
     private String name;
@@ -61,7 +69,9 @@ class Person3 {
     }
 }
 
-// 定义类Person4   自己添加无参的构造方法,和有参数的构造方法
+/**
+ * 定义类Person4   自己添加无参的构造方法,和有参数的构造方法
+ */
 class Person4 {
     private int age;
     private String name;
