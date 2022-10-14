@@ -13,7 +13,7 @@ public class Num {
         if (range(current, 5, 50)) {
             System.out.println(">>>>>>>>>>true");
         } else {
-            System.out.println("==========");
+            System.out.println("==========false");
         }
     }
 
