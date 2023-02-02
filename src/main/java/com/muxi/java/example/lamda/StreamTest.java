@@ -18,8 +18,9 @@ public class StreamTest {
          * 过滤某些节点并转换为新的list返回
          */
         List<Node> nodes = processNodeList.stream()
-                .filter(p -> !p.getCode().equals("1002")).
-                        filter(p -> !p.getCode().equals("1003"))
+                .filter(x -> !x.getCode().equals("1002"))
+                .filter(x -> !x.getCode().equals("1003"))
+                .filter(x -> x.getName().contains("审批"))
                 .map(p -> {
                     Node node = new Node();
                     node.setNodeCode(p.getCode());
