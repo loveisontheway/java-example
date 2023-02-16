@@ -1,5 +1,8 @@
 package com.muxi.java.example.basic;
 
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+
 import java.util.Arrays;
 
 /**
@@ -20,5 +23,12 @@ public class Split {
         formula = formula.replaceAll("\\{[()]}","");
         String[] arr = formula.split("\\+|\\-|\\×|\\/");
         System.out.println(Arrays.toString(arr));
+
+        // 参数:
+        // regex -- 正则表达式分隔符
+        // limit -- 分割的份数
+        String str2 = "xx yy zz";
+        String[] strArr = str2.split(" ",2);
+        System.out.println(JSONUtil.toJsonStr(strArr));
     }
 }
