@@ -4,6 +4,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * split more
@@ -30,5 +31,11 @@ public class Split {
         String str2 = "xx yy zz";
         String[] strArr = str2.split(" ",2);
         System.out.println(JSONUtil.toJsonStr(strArr));
+
+        AtomicInteger sn = new AtomicInteger(0);
+        for (int i = 0; i < 10; i++) {
+            sn.incrementAndGet();
+            System.out.println(sn);
+        }
     }
 }
