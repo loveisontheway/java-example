@@ -6,10 +6,11 @@ import javax.swing.*;
 
 /**
  * test
+ *
  * @author jjl
  * @date 2023/8/30
  */
-public class TestFrame extends javax.swing.JFrame{
+public class TestFrame extends javax.swing.JFrame {
     public TestFrame() {
         initComponents();
 
@@ -27,16 +28,16 @@ public class TestFrame extends javax.swing.JFrame{
     private void SubmitActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("---------------------------");
-        System.out.println("姓名："+userNameTestField.getText());
+        System.out.println("姓名：" + userNameTestField.getText());
         String sex = "";
         if (xyRadioButton.isSelected()) {
             sex = "男";
         } else if (xxRadioButton.isSelected()) {
             sex = "女";
-        }else if (yyRadioButton.isSelected()) {
+        } else if (yyRadioButton.isSelected()) {
             sex = "不确定";
         }
-        System.out.println("性别："+sex);
+        System.out.println("性别：" + sex);
         String hobby = "";
         if (singCheckBox.isSelected()) {
             hobby += "唱、";
@@ -47,8 +48,8 @@ public class TestFrame extends javax.swing.JFrame{
         if (rapCheckBox.isSelected()) {
             hobby += "rap、";
         }
-        System.out.println("爱好："+hobby);
-        System.out.println("自我评价："+selfTextArea.getText());
+        System.out.println("爱好：" + hobby);
+        System.out.println("自我评价：" + selfTextArea.getText());
     }
 
     private void initComponents() {
@@ -159,7 +160,7 @@ public class TestFrame extends javax.swing.JFrame{
         {
             // compute preferred size
             Dimension preferredSize = new Dimension();
-            for(int i = 0; i < contentPane.getComponentCount(); i++) {
+            for (int i = 0; i < contentPane.getComponentCount(); i++) {
                 Rectangle bounds = contentPane.getComponent(i).getBounds();
                 preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                 preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
